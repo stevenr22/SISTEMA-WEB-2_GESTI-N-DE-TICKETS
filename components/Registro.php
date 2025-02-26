@@ -38,17 +38,17 @@ $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_mess
                 <div class="form-row">
                     <div class="input-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+                        <input onkeypress="return validarLetras(event);" type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre">
                     </div>
                     <div class="input-group">
                         <label for="apellido">Apellido</label>
-                        <input type="text" id="apellido" name="apellido" placeholder="Ingrese su apellido">
+                        <input onkeypress="return validarLetras(event);" type="text" id="apellido" name="apellido" placeholder="Ingrese su apellido">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="input-group">
                         <label for="celular">Número de Celular</label>
-                        <input type="text" id="celular" name="celular" placeholder="Ingrese su número de celular">
+                        <input onkeypress="return validarNumCelular(event);" type="text" id="celular" name="celular" placeholder="Ingrese su número de celular">
                     </div>
                     <div class="input-group">
                         <label for="correo">Correo</label>
@@ -62,7 +62,7 @@ $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_mess
                     </div>
                     <div class="input-group">
                         <label for="edad">Edad:</label>
-                        <input type="text" id="edad" name="edad" placeholder="Ingrese su edad">
+                        <input type="number" id="edad" name="edad" onkeypress="return validarEdad(event);" placeholder="Ingrese su edad">
                     </div>
                 </div>
                 <div class="form-row">
@@ -74,6 +74,7 @@ $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_mess
                         <label for="password">Contraseña</label>
                         <input type="password" id="password" name="password" placeholder="Ingrese su contraseña">
                     </div>
+
                 </div>
                 <div class="form-row">
                     <div class="input-group">
@@ -81,7 +82,15 @@ $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_mess
                         <input type="password" id="confirm_password" name="confirm_password"
                             placeholder="Confirme su contraseña">
                     </div>
+
                 </div>
+                <div class="form-row">
+                    <div class="input-group checkbox-group">
+                        <input type="checkbox" id="showPassword" onclick="mostrarContra()">
+                        <label for="showPassword">Mostrar contraseña</label>
+                    </div>
+                </div>
+                
                 <button type="submit" class="btn-submit">Registrarse</button>
             </form>
             <div class="footer">
@@ -110,7 +119,7 @@ $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_mess
         }
         ?>
     });
-</script>
+    </script>
 
 
 </body>

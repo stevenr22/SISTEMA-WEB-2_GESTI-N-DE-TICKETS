@@ -1,16 +1,16 @@
-<!--ENLACES JS-->
-<!-- jquery -->
+<!-- ENLACES JS -->
+<!-- jQuery (si otros scripts lo requieren, debe ir primero) -->
 <script src="../js/jquery.min.js"></script>
 
-<!-- sweetalert JS -->
-<script src="../js/sweetalert2.js"></script>
-<!-- bootstrap JS -->
+<!-- Bootstrap JS (depende de jQuery) -->
 <script src="../js/bootstrap.bundle.min.js"></script>
-<!-- Notyf JS -->
+
+<!-- SweetAlert JS (puede ir después de jQuery) -->
+<script src="../js/sweetalert2.js"></script>
+
+<!-- Notyf JS (no depende de jQuery, puede ir después) -->
 <script src="https://cdn.jsdelivr.net/npm/notyf@3.3.0/notyf.min.js"></script>
 
-<!--VALDIAR FROM-->
-<script src="../js/ajaxform.js"></script>
-
-
-
+<!-- Scripts personalizados -->
+<script src="../js/ajaxform.js"></script> <!-- Luego AJAX para manejar formularios -->
+<script src="../Validaciones/validaciones.js"></script> <!-- Primero validaciones -->

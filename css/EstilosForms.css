@@ -75,6 +75,44 @@ input:focus {
     border-color: var(--primary-color);
     outline: none;
 }
+/* Estilo para el checkbox y su etiqueta */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre el checkbox y el texto */
+    cursor: pointer;
+}
+
+.checkbox-group input {
+    appearance: none; /* Oculta el checkbox predeterminado */
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.checkbox-group input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkbox-group input:checked::before {
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.checkbox-group label {
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+}
 
 button {
     background-color: var(--primary-color);

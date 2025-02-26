@@ -32,13 +32,19 @@ foreach ($nombre_pestañas as $pestaña) {
         <form class="form" method="POST" id="formLogin">
             <div class="input-group">
                 <label for="username">Usuario</label>
-                <input  type="text" id="username" name="username" placeholder="Ingrese su usuario">
+                <input type="text" id="username" name="username" placeholder="Ingrese su usuario">
             </div>
             <div class="input-group">
-                <label for="password" >Contraseña</label>
-                <input  type="password" id="password" name="password" placeholder="Ingrese su contraseña">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Ingrese su contraseña">
             </div>
-            <button type="submit" >Iniciar sesión</button>
+            <div class="input-group checkbox-group">
+                <input type="checkbox" id="showPassword" onclick="mostrarContra()">
+                <label for="showPassword">Mostrar contraseña</label>
+            </div>
+
+
+            <button type="submit">Iniciar sesión</button>
         </form>
 
         <div class="footer">
@@ -49,25 +55,27 @@ foreach ($nombre_pestañas as $pestaña) {
     </div>
 
     <?php include_once("../components/SourcesJs.php"); ?>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const notyf = new Notyf({
-                position: {
-                    x: 'left',   // Posición horizontal (izquierda)
-                    y: 'top'     // Posición vertical (arriba)
-                },
-                ripple: true
-            });
 
-            <?php
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const notyf = new Notyf({
+            position: {
+                x: 'left', // Posición horizontal (izquierda)
+                y: 'top' // Posición vertical (arriba)
+            },
+            ripple: true
+        });
+
+        <?php
             // Si existe un mensaje de error, mostrarlo usando Notyf
             if (isset($_SESSION['error_message']) && $_SESSION['error_message']) {
                 echo "notyf.error('" . $_SESSION['error_message'] . "');";
                 unset($_SESSION['error_message']);  // Limpiar el mensaje después de mostrarlo
             }
             ?>
-        });
+    });
     </script>
+
 
 
 </body>
