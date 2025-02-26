@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notyf Notifications Example</title>
+
+    <!-- Cargar la librería Notyf desde el CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3.3.0/notyf.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3.3.0/notyf.min.js"></script>
+
+    <style>
+        /* Estilo personalizado para el tipo de notificación warning */
+        .notyf .notyf-warning {
+            background-color: orange;  /* Color naranja */
+            color: white;  /* Color del texto */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Notyf Notifications Example</h1>
+
+    <button onclick="showNotifications()">Mostrar Notificación de Advertencia</button>
+
+    <script>
+        // Crear una instancia de Notyf
+        var notyf = new Notyf();
+
+        // Función que muestra las notificaciones cuando se hace clic en el botón
+        function showNotifications() {
+            // Notificación de advertencia personalizada con color y mensaje
+            notyf.open({
+                type: 'warning',  // Tipo de la notificación
+                message: 'Advertencia: ¡Ten cuidado con los datos que estás ingresando!',  // Mensaje de advertencia
+                duration: 4000,  // Duración de la notificación (en milisegundos)
+                dismissible: true  // Hacer que la notificación sea descartable
+            });
+        }
+    </script>
+
+</body>
+</html>

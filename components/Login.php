@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once("../Data/conexion.php");
 include_once("../Data/VariablesGlobales.php");
 variables();
 global $nombre_pestañas;
@@ -19,64 +18,60 @@ $error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] 
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once("../components/SourcesCss.php"); ?>
+    <link rel="stylesheet" href="../css/Login.css">
     <title><?php echo $nom_completo; ?></title>
-    <style>
-        .error-message {
-            color: red;
-            text-align: center;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-    </style>
 </head>
-<body>
-    <div class="container login-container">
-        <form class="login-form" action="../Data/validar_login.php" method="POST" id="formLogin"
-            onsubmit="return ValidarCamposVacios();">
-            <h2 class="text-center">Iniciar Sesión</h2>
-            
-            <!-- Mensaje de error -->
-            <?php if (!empty($error_message)) : ?>
-                <p class="error-message"><?php echo $error_message; ?></p>
-            <?php endif; ?>
 
-            <div class="mb-3">
-                <label class="form-label" for="username">Usuario:</label>
-                <input class="form-control" type="text" name="username" placeholder="Ingrese su usuario"
-                    id="username" />
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Accede al Sistema</h2>
+
+            <form class="login-form" action="../Data/validar_login.php" method="POST" id="formLogin">
+                <div class="input-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" name="username" placeholder="Ingrese su usuario">
+                </div>
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Ingrese su contraseña">
+                </div>
+                <button type="submit" class="btn-submit">Iniciar sesión</button>
+            </form>
+
+            <div class="footer">
+                <p>¿Olvidaste tu contraseña? <a href="#">Recuperar</a></p>
+                <p>¿No tienes cuenta? <a href="Registro.php">Registrate</a></p>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="password">Contraseña:</label>
-                <input class="form-control" type="password" name="password" id="password"
-                    placeholder="Ingrese su contraseña" />
-            </div>
-            <div class="mb-3">
-                <input type="checkbox" id="showPassword" onclick="verContraseña()">
-                <label for="showPassword">Mostrar contraseña</label>
-            </div>
-            <div class="d-grid">
-                <button class="btn btn-success" type="submit" value="Login">
-                    Iniciar Sesión
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
 
     <?php include_once("../components/SourcesJs.php"); ?>
-    <script src="../Validaciones/ValidarFormLogin.js"></script>
     <script>
-        function verContraseña() {
-            var contraseña = document.getElementById("password");
-            if (contraseña.type === "password") {
-                contraseña.type = "text";
-            } else {
-                contraseña.type = "password";
+    //AL ABRIR LA VENTANA SE EJECUTA LA FUNCION
+    document.addEventListener("DOMContentLoaded", function() {
+        const notyf = new Notyf(); // Instancia de Notyf
+
+        <?php
+            // Si hay un mensaje de error, mostrarlo
+            if ($error_message) {
+                echo "notyf.error('" . $error_message . "');";
+                unset($_SESSION['error_message']);  // Limpiar el mensaje después de mostrarlo
             }
-        }
+            // Si hay un mensaje de éxito, mostrarlo
+            if (isset($_SESSION['success_message']) && $_SESSION['success_message']) {
+                echo "notyf.success('" . $_SESSION['success_message'] . "');";
+                unset($_SESSION['success_message']);  // Limpiar el mensaje después de mostrarlo
+            }
+            ?>
+
+    });
     </script>
 </body>
+
 </html>
