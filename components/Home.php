@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include_once("../Data/VariablesGlobales.php");
@@ -13,7 +14,7 @@ foreach ($nombre_pestañas as $pestaña) {
 }
 
 // VALIDAR CONTROL DE SESIONES, POR AHORA SERÁ ADMIN
-if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "Administrador") {
+if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "Trabajador") {
     // Si no es un Administrador, redirige a la página de inicio
     header("Location: ../index.php");
     exit();
@@ -21,6 +22,9 @@ if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "Administrador") {
 
 $nombre_rol = $_SESSION["rol"];
 $username = $_SESSION["username"];
+$nombre = $_SESSION["nombre"];
+$apellido = $_SESSION["apellido"];
+$nombre_completo = $nombre . " " . $apellido;  // Concatenación de nombre y apellido
 $id_rol = $_SESSION["id_rol"];
 ?>
 <!DOCTYPE html>
@@ -32,6 +36,7 @@ $id_rol = $_SESSION["id_rol"];
 </head>
 <body>
     <h2>Bienvenido señor <b><?php echo $username; ?></b></h2>
+    <span>Su nombre es: <?php echo $nombre_completo; ?></span><br>
     <span>Con ROL: <?php echo $nombre_rol; ?></span>  <br> 
     <span>Con ID: <?php echo $id_rol; ?></span>
     <br>
