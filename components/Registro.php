@@ -26,7 +26,6 @@ $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_mess
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <?php include_once("../components/SourcesCss.php"); ?>
-    <link rel="stylesheet" href="../css/Register.css">
     <title><?php echo $nom_completo; ?></title>
 </head>
 
@@ -35,7 +34,7 @@ $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_mess
         <div class="register-box">
             <h2>Registro de Usuario</h2>
 
-            <form class="register-form" action="../Data/validar_register.php" method="POST" id="formRegister">
+            <form class="form" action="../Data/validar_register.php" method="POST" id="formRegistro">
                 <div class="form-row">
                     <div class="input-group">
                         <label for="nombre">Nombre</label>

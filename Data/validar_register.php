@@ -19,42 +19,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         empty($correo) || empty($direccion) || empty($edad) ||
         empty($username) || empty($password) || empty($confirm_password)) {
         
-        $_SESSION['error_message'] = "Debe completar todos los campos.";
-        header("Location: ../components/Registro.php");  // Redirige a Register.php
+        echo json_encode(["success" => false, "message" => "Debe completar todos los campos."]);
         exit();
     }
 
     // Validar contraseñas
     if ($password != $confirm_password) {
-        $_SESSION['error_message'] = "Las contraseñas no coinciden.";
-        header("Location: ../components/Registro.php");  // Redirige a Register.php
+        echo json_encode(["success" => false, "message" => "Las contraseñas no coinciden."]);
         exit();
     }
 
-    // Verificar si el username o el correo ya existen
-    $query = "SELECT * FROM usuario WHERE username_usu = '$username' OR correo_usu = '$correo'";
-    $result = mysqli_query($conn, $query);
+    // Verificar si el username ya existe
+    $query_username = "SELECT * FROM usuario WHERE username_usu = '$username'";
+    $result_username = mysqli_query($conn, $query_username);
     
-    if (mysqli_num_rows($result) > 0) {
-        // Si existe un usuario con el mismo username o correo
-        $_SESSION['error_message'] = "El nombre de usuario o correo electrónico ya está registrado.";
-        header("Location: ../components/Registro.php");  // Redirige a Register.php
+    if (mysqli_num_rows($result_username) > 0) {
+        // Si existe un usuario con el mismo username
+        echo json_encode(["success" => false, "message" => "El nombre de usuario ya está registrado."]);
+        exit();
+    }
+
+    // Verificar si el correo ya existe
+    $query_email = "SELECT * FROM usuario WHERE correo_usu = '$correo'";
+    $result_email = mysqli_query($conn, $query_email);
+    
+    if (mysqli_num_rows($result_email) > 0) {
+        // Si existe un usuario con el mismo correo
+        echo json_encode(["success" => false, "message" => "El correo electrónico ya está registrado."]);
+        exit();
+    }
+
+    // Realizar la inserción del usuario en la base de datos (sin consultas preparadas)
+    $query_insert = "INSERT INTO usuario (nombre_usu, apellido_usu, edad_usu, direccion_usu, correo_usu, username_usu, clave_usu, id_rol) 
+    VALUES ('$nombre', '$apellido', '$edad', '$direccion', '$correo', '$username', '$password', 3)";
+
+    if (mysqli_query($conn, $query_insert)) {
+        echo json_encode(["success" => true, "message" => "Usuario registrado correctamente."]);
         exit();
     } else {
-        // Realizar la inserción del usuario en la base de datos (sin consultas preparadas)
-        $query_insert = "INSERT INTO usuario (nombre_usu, apellido_usu, edad_usu, direccion_usu, correo_usu, username_usu, clave_usu, id_rol) 
-        VALUES ('$nombre', '$apellido', '$edad', '$direccion', '$correo', '$username', '$password', 3)";
-
-        if (mysqli_query($conn, $query_insert)) {
-            $_SESSION['success_message'] = "Usuario registrado correctamente.";
-            // Limpiar el mensaje de éxito antes de redirigir
-            header("Location: ../components/Login.php");  // Redirige a Login.php
-            exit();
-        } else {
-            $_SESSION['error_message'] = "Error al registrar el usuario.";
-            header("Location: ../components/Registro.php");  // Redirige a Register.php
-            exit();
-        }
+        echo json_encode(["success" => false, "message" => "Error al registrar el usuario."]);
+        exit();
     }
 }
 ?>

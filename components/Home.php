@@ -14,8 +14,9 @@ foreach ($nombre_pestañas as $pestaña) {
 }
 
 // VALIDAR CONTROL DE SESIONES, POR AHORA SERÁ ADMIN
-if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "Trabajador") {
+if (!isset($_SESSION["username"])) {
     // Si no es un Administrador, redirige a la página de inicio
+    $_SESSION['error_message'] = "Acceso restringido. Debe iniciar sesión.";
     header("Location: ../index.php");
     exit();
 }

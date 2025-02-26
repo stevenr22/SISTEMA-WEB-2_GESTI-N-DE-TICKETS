@@ -1,0 +1,156 @@
+/* Fuentes y variables globales */
+:root {
+    --font-family: 'Arial', sans-serif;
+    --primary-color: #3498db;
+    --secondary-color: #2074ac;
+    --error-color: #e74c3c;
+    --background-color: #f4f7f6;
+    --text-color: #333;
+    --border-radius: 8px;
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que la altura mínima sea el 100% de la pantalla */
+    margin: 0; /* Elimina márgenes por defecto */
+    padding: 0; /* Elimina el padding general */
+}
+
+.container, .register-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Asegura que no haya desbordamiento del contenido */
+}
+
+h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para formulario de registro (doble columna) */
+.register-container .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.register-container .input-group {
+    width: 48%;
+}
+
+@media (max-width: 768px) {
+    .register-container .form-row {
+        flex-direction: column;
+    }
+
+    .register-container .input-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .register-container button {
+        width: 100%;
+    }
+
+    /* Adaptación de formularios pequeños */
+    .container .form {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 22px;
+    }
+
+    input, button {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container, .register-container {
+        max-width: 700px;
+    }
+}
