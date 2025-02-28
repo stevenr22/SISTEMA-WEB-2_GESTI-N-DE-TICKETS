@@ -11,21 +11,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $edad = trim($_POST["edad"]);
     
     $username = trim($_POST["username"]);
-    $password = trim($_POST["password"]);
-    $confirm_password = trim($_POST["confirm_password"]);
+    $password = trim($_POST["passwordReg"]);
+    $confirm_password = trim($_POST["passwordConfirm"]);
 
+    // Guardar los valores de los campos en variables de sesión
+    $_SESSION['form_data'] = [
+        'nombre' => $nombre,
+        'apellido' => $apellido,
+        'n_celular' => $n_celular,
+        'correo' => $correo,
+        'direccion' => $direccion,
+        'edad' => $edad,
+        'username' => $username,
+        'password' => $password,
+        'confirm_password' => $confirm_password
+    ];
+       
+
+    
     // Validar si los campos están vacíos
     if (empty($nombre) || empty($apellido) || empty($n_celular) ||
         empty($correo) || empty($direccion) || empty($edad) ||
         empty($username) || empty($password) || empty($confirm_password)) {
         
-        echo json_encode(["success" => false, "message" => "Debe completar todos los campos."]);
+        $_SESSION['error_message'] = "Debe completar todos los campos.";
+        header("Location: ../components/Registro.php");
         exit();
     }
 
     // Validar contraseñas
     if ($password != $confirm_password) {
-        echo json_encode(["success" => false, "message" => "Las contraseñas no coinciden."]);
+        $_SESSION['error_message'] = "Las contraseñas no coinciden.";
+        header("Location: ../components/Registro.php");
         exit();
     }
 
@@ -35,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if (mysqli_num_rows($result_username) > 0) {
         // Si existe un usuario con el mismo username
-        echo json_encode(["success" => false, "message" => "El nombre de usuario ya está registrado."]);
+        $_SESSION['error_message'] = "El nombre de usuario ya está registrado.";
+        header("Location: ../components/Registro.php");
         exit();
     }
 
@@ -45,7 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if (mysqli_num_rows($result_email) > 0) {
         // Si existe un usuario con el mismo correo
-        echo json_encode(["success" => false, "message" => "El correo electrónico ya está registrado."]);
+        $_SESSION['error_message'] = "El correo electrónico ya está registrado.";
+        header("Location: ../components/Registro.php");
         exit();
     }
 
@@ -54,10 +73,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     VALUES ('$nombre', '$apellido', '$edad', '$direccion', '$correo', '$username', '$password', 3)";
 
     if (mysqli_query($conn, $query_insert)) {
-        echo json_encode(["success" => true, "message" => "Usuario registrado correctamente."]);
+        $_SESSION['success_message'] = "Usuario registrado correctamente.";
+        header("Location: ../components/Login.php");
         exit();
     } else {
-        echo json_encode(["success" => false, "message" => "Error al registrar el usuario."]);
+        $_SESSION['error_message'] = "Error al registrar el usuario.";
+        header("Location: ../components/Registro.php");
         exit();
     }
 }

@@ -2,17 +2,15 @@
 session_start();
 require_once("conexion.php");
 
-header("Content-Type: application/json"); // Especifica que la respuesta será JSON
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST["username"]);
-    $password = trim($_POST["password"]);
+    $password = trim($_POST["contra"]);
 
     
-
     // Validar si los campos están vacíos
     if (empty($username) || empty($password)) {
-        echo json_encode(["success" => false, "message" => "Debe completar todos los campos."]);
+        $_SESSION['error_message'] = "Debe completar todos los campos.";
+        header("Location: ../components/Login.php");
         exit();
     }
 
@@ -31,14 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["nombre"] = $row["nombre_usu"];
             $_SESSION["apellido"] = $row["apellido_usu"];
             $_SESSION["id_rol"] = $row["id_rol"];
-
-            echo json_encode(["success" => true, "message" => "Inicio de sesión exitoso"]);
+            header("Location: ../components/Home.php"); // Redirigir al dashboard o página principal
+            exit();
+        } else {
+            $_SESSION['error_message'] = "Contraseña incorrecta.";
+            header("Location: ../components/Login.php");
             exit();
         }
+    } else {
+        $_SESSION['error_message'] = "Usuario no encontrado.";
+        header("Location: ../components/Login.php");
+        exit();
     }
-
-    // Si no encontró el usuario o la contraseña es incorrecta
-    echo json_encode(["success" => false, "message" => "Usuario o contraseña incorrectos."]);
-    exit();
 }
 ?>

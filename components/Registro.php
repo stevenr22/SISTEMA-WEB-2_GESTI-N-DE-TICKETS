@@ -15,6 +15,13 @@ foreach ($nombre_pestañas as $pestaña) {
 // Guardar el mensaje de error en una variable si existe
 $error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : "";
 $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : "";
+
+// Guardar los valores del formulario en variables
+$form_data = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
+
+// Limpiar los mensajes de sesión después de mostrarlos
+unset($_SESSION['error_message']);
+unset($_SESSION['success_message']);
 ?>
 
 <!DOCTYPE html>
@@ -38,59 +45,73 @@ $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_mess
                 <div class="form-row">
                     <div class="input-group">
                         <label for="nombre">Nombre</label>
-                        <input onkeypress="return validarLetras(event);" type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+                        <input onkeypress="return validarLetras(event);" type="text" id="nombre" name="nombre"
+                            placeholder="Ingrese su nombre"
+                            value="<?php echo isset($form_data['nombre']) ? $form_data['nombre'] : ''; ?>">
                     </div>
                     <div class="input-group">
                         <label for="apellido">Apellido</label>
-                        <input onkeypress="return validarLetras(event);" type="text" id="apellido" name="apellido" placeholder="Ingrese su apellido">
+                        <input onkeypress="return validarLetras(event);" type="text" id="apellido" name="apellido"
+                            placeholder="Ingrese su apellido"
+                            value="<?php echo isset($form_data['apellido']) ? $form_data['apellido'] : ''; ?>">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="input-group">
                         <label for="celular">Número de Celular</label>
-                        <input onkeypress="return validarNumCelular(event);" type="text" id="celular" name="celular" placeholder="Ingrese su número de celular">
+                        <input onkeypress="return validarNumCelular(event);" type="text" id="celular" name="celular"
+                            placeholder="Ingrese su número de celular"
+                            value="<?php echo isset($form_data['n_celular']) ? $form_data['n_celular'] : ''; ?>">
                     </div>
                     <div class="input-group">
                         <label for="correo">Correo</label>
-                        <input type="email" id="correo" name="correo" placeholder="Ingrese su correo">
+                        <input type="email" id="correo" name="correo" placeholder="Ingrese su correo"
+                            value="<?php echo isset($form_data['correo']) ? $form_data['correo'] : ''; ?>">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="input-group">
                         <label for="direccion">Dirección</label>
-                        <input type="text" id="direccion" name="direccion" placeholder="Ingrese su dirección">
+                        <input type="text" id="direccion" name="direccion" placeholder="Ingrese su dirección"
+                            value="<?php echo isset($form_data['direccion']) ? $form_data['direccion'] : ''; ?>">
                     </div>
                     <div class="input-group">
                         <label for="edad">Edad:</label>
-                        <input type="number" id="edad" name="edad" onkeypress="return validarEdad(event);" placeholder="Ingrese su edad">
+                        <input type="text" id="edad" name="edad" onkeypress="return validarEdad(event);"
+                            placeholder="Ingrese su edad"
+                            value="<?php echo isset($form_data['edad']) ? $form_data['edad'] : ''; ?>">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="input-group">
                         <label for="username">Usuario</label>
-                        <input type="text" id="username" name="username" placeholder="Ingrese su usuario">
+                        <input type="text" id="username" name="username" placeholder="Ingrese su usuario"
+                            value="<?php echo isset($form_data['username']) ? $form_data['username'] : ''; ?>">
                     </div>
                     <div class="input-group">
                         <label for="password">Contraseña</label>
-                        <input type="password" id="password" name="password" placeholder="Ingrese su contraseña">
+                        <input type="password" id="passwordReg" name="passwordReg" placeholder="Ingrese su contraseña"
+                            value="<?php echo isset($form_data['password']) ? $form_data['password'] : ''; ?>">
                     </div>
 
                 </div>
                 <div class="form-row">
                     <div class="input-group">
-                        <label for="confirm_password">Confirmar Contraseña</label>
-                        <input type="password" id="confirm_password" name="confirm_password"
-                            placeholder="Confirme su contraseña">
+                        <label for="passwordConfirm">Confirmar Contraseña</label>
+                        <input type="password" id="passwordConfirm" name="passwordConfirm"
+                            placeholder="Confirme su contraseña"
+                            value="<?php echo isset($form_data['confirm_password']) ? $form_data['confirm_password'] : ''; ?>">
                     </div>
 
                 </div>
                 <div class="form-row">
                     <div class="input-group checkbox-group">
-                        <input type="checkbox" id="showPassword" onclick="mostrarContra()">
+                        <input onchange="mostrarContraseña(['passwordReg','passwordConfirm'])" type="checkbox"
+                            id="mostrar_contraseña">
                         <label for="showPassword">Mostrar contraseña</label>
                     </div>
                 </div>
-                
+
                 <button type="submit" class="btn-submit">Registrarse</button>
             </form>
             <div class="footer">
@@ -100,28 +121,25 @@ $success_message = isset($_SESSION['success_message']) ? $_SESSION['success_mess
     </div>
 
     <?php include_once("../components/SourcesJs.php"); ?>
-
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const notyf = new Notyf(); // Instancia de Notyf
+        <?php if ($error_message): ?>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '<?php echo $error_message; ?>'
+        });
+        <?php endif; ?>
 
-        <?php
-        // Si hay un mensaje de advertencia, mostrarlo
-        if (isset($_SESSION['error_message']) && $_SESSION['error_message']) {
-            echo "notyf.error('" . $_SESSION['error_message'] . "');";
-            unset($_SESSION['error_message']);  // Limpiar el mensaje después de mostrarlo
-        }
-
-        // Si hay un mensaje de éxito, mostrarlo
-        if (isset($_SESSION['success_message']) && $_SESSION['success_message']) {
-            echo "notyf.success('" . $_SESSION['success_message'] . "');";
-            unset($_SESSION['success_message']);  // Limpiar el mensaje después de mostrarlo
-        }
-        ?>
+        <?php if ($success_message): ?>
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: '<?php echo $success_message; ?>'
+        });
+        <?php endif; ?>
     });
     </script>
-
-
 </body>
 
 </html>

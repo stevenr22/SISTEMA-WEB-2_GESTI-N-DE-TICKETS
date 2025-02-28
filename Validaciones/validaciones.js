@@ -1,13 +1,11 @@
-function mostrarContra() {
-    var contraseña = document.getElementById("password");
-    var confirm_contraseña = document.getElementById("confirm_password");
-
-    if (contraseña.type === "password" && confirm_contraseña.type === "password") {
-        contraseña.type = "text";
-        confirm_contraseña.type = "text";
-    } else {
-        contraseña.type = "password";
-        confirm_contraseña.type = "password";
+function mostrarContraseña(ids) {
+    for (var i = 0; i < ids.length; i++) {
+        var input = document.getElementById(ids[i]);
+        if (input.type === "password") {
+            input.type = "text";
+        } else {
+            input.type = "password";
+        }
     }
 }
 
@@ -50,31 +48,19 @@ function validarNumCelular(e){
 function validarEdad(e) {
     var inputEdad = document.getElementById("edad").value;
     var codi_char = e.keyCode;
-    
-    // Crear instancia de Notyf solo si no existe
-    if (!window.notyf) {
-        window.notyf = new Notyf({
-            position: {
-                x: 'right', // Posición horizontal (izquierda)
-                y: 'top'  // Posición vertical (arriba)
-            },
-            ripple: true
-        });
-    }
-    
+
     if (codi_char == 13 || codi_char == 8) {
         return true;
     }
-    
+
     var tipo = String.fromCharCode(codi_char);
     var expresion = /\d/;
-    
+
     if (expresion.test(tipo)) {
         var edad_entera = parseInt(inputEdad + tipo, 10);
         if (edad_entera > 100) {
             e.preventDefault();
             document.getElementById("edad").value = "";
-            window.notyf.error("LA EDAD NO DEBE DE SER MAYOR A 100");
         }
         return true;
     } else {

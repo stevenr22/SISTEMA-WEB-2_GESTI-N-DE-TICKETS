@@ -11,6 +11,14 @@ foreach ($nombre_pestañas as $pestaña) {
         break;
     }
 }
+
+// Guardar el mensaje de error en una variable si existe
+$error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : "";
+$success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : "";
+
+// Limpiar los mensajes de sesión después de mostrarlos
+unset($_SESSION['error_message']);
+unset($_SESSION['success_message']);
 ?>
 
 <!DOCTYPE html>
@@ -29,20 +37,20 @@ foreach ($nombre_pestañas as $pestaña) {
             <h2>Accede al Sistema</h2>
         </div>
 
-        <form class="form" method="POST" id="formLogin">
+        <form class="form" method="POST" id="formLogin" action="../Data/validar_login.php">
             <div class="input-group">
                 <label for="username">Usuario</label>
                 <input type="text" id="username" name="username" placeholder="Ingrese su usuario">
             </div>
+
             <div class="input-group">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="Ingrese su contraseña">
+                <label for="contra">Contraseña</label>
+                <input type="password" id="contra" name="contra" placeholder="Ingrese su contraseña">
             </div>
             <div class="input-group checkbox-group">
-                <input type="checkbox" id="showPassword" onclick="mostrarContra()">
-                <label for="showPassword">Mostrar contraseña</label>
+                <input type="checkbox" id="checkPassword" onchange="mostrarContraseña(['contra'])">
+                <label for="mostrarContraseña">Mostrar contraseña</label>
             </div>
-
 
             <button type="submit">Iniciar sesión</button>
         </form>
@@ -55,29 +63,25 @@ foreach ($nombre_pestañas as $pestaña) {
     </div>
 
     <?php include_once("../components/SourcesJs.php"); ?>
-
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const notyf = new Notyf({
-            position: {
-                x: 'left', // Posición horizontal (izquierda)
-                y: 'top' // Posición vertical (arriba)
-            },
-            ripple: true
+        <?php if ($error_message): ?>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '<?php echo $error_message; ?>'
         });
+        <?php endif; ?>
 
-        <?php
-            // Si existe un mensaje de error, mostrarlo usando Notyf
-            if (isset($_SESSION['error_message']) && $_SESSION['error_message']) {
-                echo "notyf.error('" . $_SESSION['error_message'] . "');";
-                unset($_SESSION['error_message']);  // Limpiar el mensaje después de mostrarlo
-            }
-            ?>
+        <?php if ($success_message): ?>
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: '<?php echo $success_message; ?>'
+        });
+        <?php endif; ?>
     });
     </script>
-
-
-
 </body>
 
 </html>
