@@ -12,13 +12,6 @@ foreach ($nombre_pestañas as $pestaña) {
     }
 }
 
-// Guardar el mensaje de error en una variable si existe
-$error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : "";
-$success_message = isset($_SESSION['success_message']) ? $_SESSION['success_message'] : "";
-
-// Limpiar los mensajes de sesión después de mostrarlos
-unset($_SESSION['error_message']);
-unset($_SESSION['success_message']);
 ?>
 
 <!DOCTYPE html>
@@ -32,56 +25,52 @@ unset($_SESSION['success_message']);
 </head>
 
 <body>
-    <div class="container">
-        <div class="box">
-            <h2>Accede al Sistema</h2>
+
+
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Acceder al Sistema</h2>
+                <form id="formLogin" class="form-group">
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="username" name="username"
+                            placeholder="Ingrese su usuario" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="contraseña" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contra" name="contra"
+                            placeholder="Ingrese su contraseña" />
+                    </div>
+
+                    <div class="d-grid gap-2 mb-3">
+                        <button class="btn btn-primary" type="submit">Acceder</button>
+                    </div>
+
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="checkPassword"
+                            onchange="mostrarContraseña(['contra'])" />
+                        <label for="mostrarContraseña" class="form-check-label">Mostrar contraseña</label>
+                    </div>
+
+
+                </form>
+                <?php include_once("../components/Modales.php")?>
+                <div class="text-center mt-3">
+                    <p>¿No tienes cuenta? <a href="../components/Registro.php">Regístrate</a></p>
+
+                    <p>¿Olvidaste tu contraseña? <a href="#" data-bs-toggle="modal"
+                            data-bs-target="#recuperarContraseñaModal">Recupérala</a></p>
+                   
+
+                </div>
+            </div>
+
         </div>
 
-        <form class="form" method="POST" id="formLogin" action="../Data/validar_login.php">
-            <div class="input-group">
-                <label for="username">Usuario</label>
-                <input type="text" id="username" name="username" placeholder="Ingrese su usuario">
-            </div>
-
-            <div class="input-group">
-                <label for="contra">Contraseña</label>
-                <input type="password" id="contra" name="contra" placeholder="Ingrese su contraseña">
-            </div>
-            <div class="input-group checkbox-group">
-                <input type="checkbox" id="checkPassword" onchange="mostrarContraseña(['contra'])">
-                <label for="mostrarContraseña">Mostrar contraseña</label>
-            </div>
-
-            <button type="submit">Iniciar sesión</button>
-        </form>
-
-        <div class="footer">
-            <p>¿Olvidaste tu contraseña? <a href="RecuperarClave.php">Recuperar</a></p>
-            <p>¿No tienes cuenta? <a href="Registro.php">Registrate</a></p>
-        </div>
-
-    </div>
-
-    <?php include_once("../components/SourcesJs.php"); ?>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        <?php if ($error_message): ?>
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: '<?php echo $error_message; ?>'
-        });
-        <?php endif; ?>
-
-        <?php if ($success_message): ?>
-        Swal.fire({
-            icon: 'success',
-            title: 'Éxito',
-            text: '<?php echo $success_message; ?>'
-        });
-        <?php endif; ?>
-    });
-    </script>
+        <?php include_once("../components/SourcesJs.php"); ?>
 </body>
 
 </html>

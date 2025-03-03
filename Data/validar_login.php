@@ -1,16 +1,13 @@
 <?php
 session_start();
 require_once("conexion.php");
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST["username"]);
     $password = trim($_POST["contra"]);
 
-    
     // Validar si los campos están vacíos
     if (empty($username) || empty($password)) {
-        $_SESSION['error_message'] = "Debe completar todos los campos.";
-        header("Location: ../components/Login.php");
+        echo json_encode(["status" => "warning", "message" => "Debe completar todos los campos."]);
         exit();
     }
 
@@ -21,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               WHERE u.estado = 1 AND r.estado = 1 AND u.username_usu = '$username'";
 
     $result = mysqli_query($conn, $query);
-    
+
     if ($row = mysqli_fetch_assoc($result)) {
         if ($row["clave_usu"] == $password) { // Comparación directa (no segura)
             $_SESSION["rol"] = $row["nombre_rol"];
@@ -29,16 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["nombre"] = $row["nombre_usu"];
             $_SESSION["apellido"] = $row["apellido_usu"];
             $_SESSION["id_rol"] = $row["id_rol"];
-            header("Location: ../components/Home.php"); // Redirigir al dashboard o página principal
+            echo json_encode(["status" => "success"]);
             exit();
         } else {
-            $_SESSION['error_message'] = "Contraseña incorrecta.";
-            header("Location: ../components/Login.php");
+            echo json_encode(["status" => "warning", "message" => "Contraseña incorrecta."]);
             exit();
         }
     } else {
-        $_SESSION['error_message'] = "Usuario no encontrado.";
-        header("Location: ../components/Login.php");
+        echo json_encode(["status" => "error", "message" => "Usuario no encontrado."]);
         exit();
     }
 }
