@@ -25,7 +25,7 @@ $(document).ready(function() {
                     
                 } else if (response.status === "success") {
                     // Redirigir directamente a la página Home.php 
-                    window.location.href = "../components/Home.php"; 
+                    window.location.href = "../pages/Dashboard.php"; 
                 }
             },
             error: function() {

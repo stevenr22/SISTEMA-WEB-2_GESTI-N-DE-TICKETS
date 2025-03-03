@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include_once("../Data/VariablesGlobales.php");
@@ -30,22 +29,24 @@ $id_rol = $_SESSION["id_rol"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include_once("../components/SourcesCss.php");?>
     <title><?php echo $nom_completo; ?></title>
 </head>
+
 <body>
-    <h2>Bienvenido señor <b><?php echo $username; ?></b></h2>
-    <span>Su nombre es: <?php echo $nombre_completo; ?></span><br>
-    <span>Con ROL: <?php echo $nombre_rol; ?></span>  <br> 
-    <span>Con ID: <?php echo $id_rol; ?></span>
-    <br>
-    <button onclick="Logout()">Cerrar sesión</button> 
-    <script>
-        function Logout() {
-            window.location.href = "../Data/CerrarSesion.php";
-        }
-    </script>
+
+    <div class="parent">
+        <div class="div1">1</div>
+        <div class="div2">2</div>
+        <div class="div3">3</div>
+        <div class="div4">4</div>
+    </div>
+
+
 </body>
+
 </html>
