@@ -1,260 +1,293 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard SysGi</title>
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #f0f2f5;
-      font-family: 'Arial', sans-serif;
-    }
-
-    .navbar {
-      background-color: #2c3e50; /* Color más oscuro para un diseño más profesional */
-      border-bottom: 2px solid #34495e; /* Sombra sutil */
-    }
-
-    .navbar-brand {
-      color: #ecf0f1;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
-    .navbar-nav .nav-link {
-      color: #bdc3c7;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      font-size: 1rem;
-    }
-
-    .navbar-nav .nav-link:hover {
-      color: #ecf0f1;
-      background-color: #34495e;
-      border-radius: 5px;
-    }
-
-    .navbar-toggler {
-      border-color: #ecf0f1;
-    }
-
-    .navbar-toggler-icon {
-      background-color: #ecf0f1;
-    }
-
-    .dashboard-header {
-      background-color: #1e3661;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      padding: 20px 0;
-      margin-bottom: 10px;
-    }
-    .dashboard-header .row{
-      padding-left: 15px;
-      padding-right: 15px;
-    }
-
-    .dashboard-header img {
-      max-height: 50px;
-    }
-
-    .dashboard-header h5 {
-      color: #ffffff;
-      font-weight: bold;
-    }
-
-    .icon-container i {
-      font-size: 1.5rem;
-      color: #ffffff;
-    }
-
-    .icon-container i:hover {
-      color: #45a049;
-    }
-
-    .dropdown-menu {
-      border-radius: 5px;
-    }
-
-    .dropdown-item {
-      cursor: pointer;
-      padding: 10px;
-      color: #34495e;
-    }
-
-    .dropdown-item:hover {
-      background-color: #ecf0f1;
-    }
-
-    .main-content {
-      padding: 30px;
-      background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .card {
-      border: none;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-header {
-      background-color: #1e3661;
-      color: #fff;
-    }
-
-    .card-body {
-      background-color: #f9f9f9;
-    }
-
-   
-
-    /* Diseño para pantallas pequeñas (menor a 768px) */
-    @media (max-width: 768px) {
-      .icon-container i {
-        font-size: 1.2rem;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard SysGi</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f0f2f5;
+        font-family: "Arial", sans-serif;
       }
 
-      .dashboard-header img {
-        max-height: 40px;
+      .navbar {
+        background-color: #2c3e50; /* Color más oscuro para un diseño más profesional */
+        border-bottom: 2px solid #34495e; /* Sombra sutil */
       }
 
-      .dashboard-header .row {
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: space-between;
+      .navbar-brand {
+        color: #ecf0f1;
+        font-size: 1.8rem;
+        font-weight: bold;
       }
 
-      .dashboard-header .col-12 {
-        flex: 1;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .navbar-nav .nav-link {
+        color: #bdc3c7;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 1rem;
       }
 
-      .dashboard-header .col-12.col-md-4:first-child {
-        justify-content: flex-start;
+      .navbar-nav .nav-link:hover {
+        color: #ecf0f1;
+        background-color: #34495e;
+        border-radius: 5px;
       }
 
-      .dashboard-header .col-12.col-md-4.text-center {
-        justify-content: center;
-      }
-
-      .dashboard-header .col-12.col-md-4.text-end {
-        justify-content: flex-end;
-      }
-
-      /* Estilos para el menú hamburguesa */
       .navbar-toggler {
-        padding: 0.5rem 1rem;
-        border: none;
-        background: none;
+        border-color: #ecf0f1;
       }
 
       .navbar-toggler-icon {
         background-color: #ecf0f1;
+      }
+
+      .dashboard-header {
+        background-color: #1e3661;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+        margin-bottom: 10px;
+      }
+      .dashboard-header .row {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .dashboard-header img {
+        max-height: 50px;
+      }
+
+      .dashboard-header h5 {
+        color: #ffffff;
+        font-weight: bold;
+      }
+
+      .icon-container i {
         font-size: 1.5rem;
+        color: #ffffff;
       }
 
-      .navbar-nav {
-        text-align: center;
+      .icon-container i:hover {
+        color: #45a049;
       }
-    }
-  </style>
-</head>
 
-<body>
+      .dropdown-menu {
+        border-radius: 5px;
+      }
 
-  <!-- Encabezado -->
-  <div class="container-fluid dashboard-header">
-    <div class="row align-items-center">
-      <div class="col-12 col-md-4 d-flex justify-content-start align-items-center">
-        <img src="public/sou.png" alt="Logo SysGi" class="img-fluid">
-        <span class="ms-2 text-white">SysGi</span>
-      </div>
-      <div class="col-12 col-md-4 text-center">
-        <h5>Bienvenido señor @usuario</h5>
-      </div>
-      <div class="col-12 col-md-4 text-end icon-container">
-        <a href="#" class="me-3"><i class="fas fa-bell"></i></a>
-        <a href="#"><i class="fas fa-sign-out-alt"></i></a>
+      .dropdown-item {
+        cursor: pointer;
+        padding: 10px;
+        color: #34495e;
+      }
+
+      .dropdown-item:hover {
+        background-color: #ecf0f1;
+      }
+
+      .main-content {
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .card {
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        background-color: #1e3661;
+        color: #fff;
+      }
+
+      .card-body {
+        background-color: #f9f9f9;
+      }
+
+      /* Diseño para pantallas pequeñas (menor a 768px) */
+      @media (max-width: 768px) {
+        .icon-container i {
+          font-size: 1.2rem;
+        }
+
+        .dashboard-header img {
+          max-height: 40px;
+        }
+
+        .dashboard-header .row {
+          flex-wrap: nowrap;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .dashboard-header .col-12 {
+          flex: 1;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .dashboard-header .col-12.col-md-4:first-child {
+          justify-content: flex-start;
+        }
+
+        .dashboard-header .col-12.col-md-4.text-center {
+          justify-content: center;
+        }
+
+        .dashboard-header .col-12.col-md-4.text-end {
+          justify-content: flex-end;
+        }
+
+        /* Estilos para el menú hamburguesa */
+        .navbar-toggler {
+          padding: 0.5rem 1rem;
+          border: none;
+          background: none;
+        }
+
+        .navbar-toggler-icon {
+          background-color: #ecf0f1;
+          font-size: 1.5rem;
+        }
+
+        .navbar-nav {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Encabezado -->
+    <div class="container-fluid dashboard-header">
+      <div class="row align-items-center">
+        <div
+          class="col-12 col-md-4 d-flex justify-content-start align-items-center"
+        >
+          <img src="public/sou.png" alt="Logo SysGi" class="img-fluid" />
+          <span class="ms-2 text-white">SysGi</span>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+          <h5>Bienvenido señor @usuario</h5>
+        </div>
+        <div class="col-12 col-md-4 text-end icon-container">
+          <a href="#" class="me-3"><i class="fas fa-bell"></i></a>
+          <a href="#"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Barra de Navegación -->
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <!-- Ícono de Font Awesome para el menú de hamburguesa -->
-        <i class="fas fa-bars text-white"></i>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Menu 1
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Opción 1</a></li>
-              <li><a class="dropdown-item" href="#">Opción 2</a></li>
-              <li><a class="dropdown-item" href="#">Opción 3</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Menu 2
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-              <li><a class="dropdown-item" href="#">Opción 1</a></li>
-              <li><a class="dropdown-item" href="#">Opción 2</a></li>
-            </ul>
-          </li>
-        </ul>
+    <!-- Barra de Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <!-- Ícono de Font Awesome para el menú de hamburguesa -->
+          <i class="fas fa-bars text-white"></i>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-center"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Menu 1
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Opción 1</a></li>
+                <li><a class="dropdown-item" href="#">Opción 2</a></li>
+                <li><a class="dropdown-item" href="#">Opción 3</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown2"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Menu 2
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <li><a class="dropdown-item" href="#">Opción 1</a></li>
+                <li><a class="dropdown-item" href="#">Opción 2</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Contenido Principal -->
-  <div class="container mt-4 main-content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card mb-4">
-          <div class="card-header">
-            <h5>Panel de Control</h5>
-          </div>
-          <div class="card-body">
-            <p>Aquí puedes ver las estadísticas y controlar los aspectos clave de tu sistema.</p>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h6>Estadística 1</h6>
-                    <p>Resumen de información importante</p>
+    <!-- Contenido Principal -->
+    <div class="container mt-4 main-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5>Panel de Control</h5>
+            </div>
+            <div class="card-body">
+              <p>
+                Aquí puedes ver las estadísticas y controlar los aspectos clave
+                de tu sistema.
+              </p>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card shadow-sm">
+                    <div class="card-body">
+                      <h6>Estadística 1</h6>
+                      <p>Resumen de información importante</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h6>Estadística 2</h6>
-                    <p>Detalles sobre el estado actual del sistema</p>
+                <div class="col-md-4">
+                  <div class="card shadow-sm">
+                    <div class="card-body">
+                      <h6>Estadística 2</h6>
+                      <p>Detalles sobre el estado actual del sistema</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h6>Estadística 3</h6>
-                    <p>Gráficos o detalles importantes para la toma de decisiones</p>
+                <div class="col-md-4">
+                  <div class="card shadow-sm">
+                    <div class="card-body">
+                      <h6>Estadística 3</h6>
+                      <p>
+                        Gráficos o detalles importantes para la toma de
+                        decisiones
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -263,12 +296,9 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Scripts de Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-</body>
-
+    <!-- Scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  </body>
 </html>
