@@ -1,135 +1,274 @@
-<!DOCTYPE html>  
-<html lang="es">  
-  <head>  
-    <meta charset="UTF-8" />  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-    <link rel="stylesheet" href="css/bootstrap.min.css" />  
-    <link rel="stylesheet" href="css/EstilosForms.css" />  
-    <title>Registro de Usuario</title>  
-  </head>  
-  <body>  
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">  
-      <div class="card shadow-lg" style="width: 100%; max-width: 800px;">  
-        <div class="card-body">  
-          <h2 class="text-center mb-4">Registro de Usuario</h2>  
-          
-          
-          
-          <form class="form-group">  
+<!DOCTYPE html>
+<html lang="es">
 
-            
-            <div class="row mb-3">  
-              <div class="col-6">  
-                <label for="nombre" class="form-label">Nombre Completo</label>  
-                <input  
-                  type="text"  
-                  class="form-control form-control-sm"  
-                  id="nombre"  
-                  placeholder="Ingrese su nombre completo"  
-                  required  
-                />  
-              </div>  
-              <div class="col-6">  
-                <label for="usuario" class="form-label">Usuario</label>  
-                <input  
-                  type="text"  
-                  class="form-control form-control-sm"  
-                  id="usuario"  
-                  placeholder="Ingrese su usuario"  
-                  required  
-                />  
-              </div>  
-            </div>  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard SysGi</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Arial', sans-serif;
+    }
 
-            <div class="row mb-3">  
-              <div class="col-6">  
-                <label for="correo" class="form-label">Correo Electrónico</label>  
-                <input  
-                  type="email"  
-                  class="form-control form-control-sm"  
-                  id="correo"  
-                  placeholder="Ingrese su correo electrónico"  
-                  required  
-                />  
-              </div>  
-              <div class="col-6">  
-                <label for="telefono" class="form-label">Teléfono</label>  
-                <input  
-                  type="tel"  
-                  class="form-control form-control-sm"  
-                  id="telefono"  
-                  placeholder="Ingrese su teléfono"  
-                  required  
-                />  
-              </div>  
-            </div>  
+    .navbar {
+      background-color: #2c3e50; /* Color más oscuro para un diseño más profesional */
+      border-bottom: 2px solid #34495e; /* Sombra sutil */
+    }
 
-            <div class="row mb-3">  
-              <div class="col-6">  
-                <label for="direccion" class="form-label">Dirección</label>  
-                <input  
-                  type="text"  
-                  class="form-control form-control-sm"  
-                  id="direccion"  
-                  placeholder="Ingrese su dirección"  
-                  required  
-                />  
-              </div>  
-              <div class="col-6">  
-                <label for="contraseña" class="form-label">Contraseña</label>  
-                <input  
-                  type="password"  
-                  class="form-control form-control-sm"  
-                  id="contraseña"  
-                  placeholder="Ingrese su contraseña"  
-                  required  
-                />  
-              </div>  
-            </div>  
+    .navbar-brand {
+      color: #ecf0f1;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
 
-            <div class="row mb-3">  
-              <div class="col-6">  
-                <label for="confirmarContraseña" class="form-label">Confirmar Contraseña</label>  
-                <input  
-                  type="password"  
-                  class="form-control form-control-sm"  
-                  id="confirmarContraseña"  
-                  placeholder="Confirme su contraseña"  
-                  required  
-                />  
-              </div>  
-              <div class="col-6">  
-                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>  
-                <input  
-                  type="date"  
-                  class="form-control form-control-sm"  
-                  id="fechaNacimiento"  
-                  required  
-                />  
-              </div>  
-            </div>  
+    .navbar-nav .nav-link {
+      color: #bdc3c7;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-size: 1rem;
+    }
 
-            <div class="row mb-3">  
-              <div class="col-6">  
-                <label for="genero" class="form-label">Género</label>  
-                <select class="form-control form-control-sm" id="genero" required>  
-                  <option value="">Selecciona tu género</option>  
-                  <option value="masculino">Masculino</option>  
-                  <option value="femenino">Femenino</option>  
-                  <option value="otro">Otro</option>  
-                </select>  
-              </div>  
-            </div>  
+    .navbar-nav .nav-link:hover {
+      color: #ecf0f1;
+      background-color: #34495e;
+      border-radius: 5px;
+    }
 
-            <div class="d-grid gap-2 mb-3">  
-              <button class="btn btn-primary" type="submit">Registrarse</button>  
-            </div>  
-          </form>  
-          <div class="text-center">  
-            <p>¿Ya tienes cuenta? <a href="index.html">Inicia sesión</a></p>  
-          </div>  
-        </div>  
-      </div>  
-    </div>  
-  </body>  
-</html>  
+    .navbar-toggler {
+      border-color: #ecf0f1;
+    }
+
+    .navbar-toggler-icon {
+      background-color: #ecf0f1;
+    }
+
+    .dashboard-header {
+      background-color: #1e3661;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px 0;
+      margin-bottom: 10px;
+    }
+    .dashboard-header .row{
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .dashboard-header img {
+      max-height: 50px;
+    }
+
+    .dashboard-header h5 {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .icon-container i {
+      font-size: 1.5rem;
+      color: #ffffff;
+    }
+
+    .icon-container i:hover {
+      color: #45a049;
+    }
+
+    .dropdown-menu {
+      border-radius: 5px;
+    }
+
+    .dropdown-item {
+      cursor: pointer;
+      padding: 10px;
+      color: #34495e;
+    }
+
+    .dropdown-item:hover {
+      background-color: #ecf0f1;
+    }
+
+    .main-content {
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      background-color: #1e3661;
+      color: #fff;
+    }
+
+    .card-body {
+      background-color: #f9f9f9;
+    }
+
+   
+
+    /* Diseño para pantallas pequeñas (menor a 768px) */
+    @media (max-width: 768px) {
+      .icon-container i {
+        font-size: 1.2rem;
+      }
+
+      .dashboard-header img {
+        max-height: 40px;
+      }
+
+      .dashboard-header .row {
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .dashboard-header .col-12 {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .dashboard-header .col-12.col-md-4:first-child {
+        justify-content: flex-start;
+      }
+
+      .dashboard-header .col-12.col-md-4.text-center {
+        justify-content: center;
+      }
+
+      .dashboard-header .col-12.col-md-4.text-end {
+        justify-content: flex-end;
+      }
+
+      /* Estilos para el menú hamburguesa */
+      .navbar-toggler {
+        padding: 0.5rem 1rem;
+        border: none;
+        background: none;
+      }
+
+      .navbar-toggler-icon {
+        background-color: #ecf0f1;
+        font-size: 1.5rem;
+      }
+
+      .navbar-nav {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Encabezado -->
+  <div class="container-fluid dashboard-header">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-4 d-flex justify-content-start align-items-center">
+        <img src="public/sou.png" alt="Logo SysGi" class="img-fluid">
+        <span class="ms-2 text-white">SysGi</span>
+      </div>
+      <div class="col-12 col-md-4 text-center">
+        <h5>Bienvenido señor @usuario</h5>
+      </div>
+      <div class="col-12 col-md-4 text-end icon-container">
+        <a href="#" class="me-3"><i class="fas fa-bell"></i></a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de Navegación -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Ícono de Font Awesome para el menú de hamburguesa -->
+        <i class="fas fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Menu 1
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Opción 1</a></li>
+              <li><a class="dropdown-item" href="#">Opción 2</a></li>
+              <li><a class="dropdown-item" href="#">Opción 3</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Menu 2
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+              <li><a class="dropdown-item" href="#">Opción 1</a></li>
+              <li><a class="dropdown-item" href="#">Opción 2</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido Principal -->
+  <div class="container mt-4 main-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5>Panel de Control</h5>
+          </div>
+          <div class="card-body">
+            <p>Aquí puedes ver las estadísticas y controlar los aspectos clave de tu sistema.</p>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h6>Estadística 1</h6>
+                    <p>Resumen de información importante</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h6>Estadística 2</h6>
+                    <p>Detalles sobre el estado actual del sistema</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h6>Estadística 3</h6>
+                    <p>Gráficos o detalles importantes para la toma de decisiones</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts de Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
