@@ -1,153 +1,97 @@
-body {
-  background-color: #f0f2f5;
-  font-family: "Arial", sans-serif;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 100%;
+  padding: 0;
 }
 
-.navbar {
-  background-color: #2c3e50; /* Color más oscuro para un diseño más profesional */
-  border-bottom: 2px solid #34495e; /* Sombra sutil */
-}
-
-.navbar-brand {
-  color: #ecf0f1;
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-.navbar-nav .nav-link {
-  color: #bdc3c7;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  font-size: 1rem;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #ecf0f1;
-  background-color: #34495e;
-  border-radius: 5px;
-}
-
-.navbar-toggler {
-  border-color: #ecf0f1;
-}
-
-.navbar-toggler-icon {
-  background-color: #ecf0f1;
-}
-
-.dashboard-header {
-  background-color: #1e3661;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px 0;
-  margin-bottom: 10px;
-}
-.dashboard-header .row {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.dashboard-header img {
-  max-height: 50px;
-}
-
-.dashboard-header h5 {
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.icon-container i {
-  font-size: 1.5rem;
-  color: #ffffff;
-}
-
-.icon-container i:hover {
-  color: #45a049;
-}
-
-.dropdown-menu {
-  border-radius: 5px;
-}
-
-.dropdown-item {
-  cursor: pointer;
+/*HEADER*/
+.header {
+  background-color: rgba(105, 105, 101, 0.219);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
-  color: #34495e;
+}
+.header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover; /*EVITA DEFORMACIONES*/
+  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
-.dropdown-item:hover {
-  background-color: #ecf0f1;
+.header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.icons .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+
+}
+.icons .icon .fa-bell, .icons .icon .cerrar, .icons .icon .fa-user {
+  font-size: 24px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+.icons .icon .fa-bell:hover, .icons .icon .cerrar:hover, .icons .icon .fa-user:hover {
+  color: #7e7a7a;
 }
 
-.main-content {
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+/*---------------------------------------------------------------*/
 
-.card {
+/* Estilos para el dropdown */
+.dropdown-menu {
   border: none;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+/*-----------------------------------------------------*/
+/*CUERPO ESTILOS*/
+.main {
+  background-color: rgba(105, 105, 101, 0.219);
+}
+.main section{
+  text-align: justify;
+}
+/*-----------------------------------------------------*/
+
+.footer {
+  background-color: darkgreen;
+  color: white;
+  padding: 10px;
 }
 
-.card-header {
-  background-color: #1e3661;
-  color: #fff;
-}
-
-.card-body {
-  background-color: #f9f9f9;
-}
-
-/* Diseño para pantallas pequeñas (menor a 768px) */
+/*RESPONSIVIDAD*/
 @media (max-width: 768px) {
-  .icon-container i {
-    font-size: 1.2rem;
-  }
-
-  .dashboard-header img {
-    max-height: 40px;
-  }
-
-  .dashboard-header .row {
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .dashboard-header .col-12 {
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .dashboard-header .col-12.col-md-4:first-child {
-    justify-content: flex-start;
-  }
-
-  .dashboard-header .col-12.col-md-4.text-center {
-    justify-content: center;
-  }
-
-  .dashboard-header .col-12.col-md-4.text-end {
-    justify-content: flex-end;
-  }
-
-  /* Estilos para el menú hamburguesa */
-  .navbar-toggler {
-    padding: 0.5rem 1rem;
-    border: none;
-    background: none;
-  }
-
-  .navbar-toggler-icon {
-    background-color: #ecf0f1;
-    font-size: 1.5rem;
-  }
-
-  .navbar-nav {
+  .header h2 {
     text-align: center;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
   }
+  .header .icons {
+    gap: 0.5rem;
+  }
+  .icons .icon{
+    width: 30px;
+    height: 30px;
+  }
+  
 }

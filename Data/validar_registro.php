@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $edad = trim($_POST["edad"]);
     
     $username = trim($_POST["username"]);
-    $password = trim($_POST["passwordReg"]);
-    $confirm_password = trim($_POST["passwordConfirm"]);
+    $password = trim($_POST["contraRegistro"]);
+    $confirm_password = trim($_POST["contraConfirmar"]);
 
     // Validar si los campos están vacíos
     if (empty($nombre) || empty($apellido) || empty($n_celular) ||
