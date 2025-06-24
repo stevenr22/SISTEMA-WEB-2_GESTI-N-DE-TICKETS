@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once("../Data/VariablesGlobales.php");
 variables();
 global $nombre_pestañas;
@@ -19,8 +18,7 @@ foreach ($nombre_pestañas as $pestaña) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <?php include_once("../components/SourcesCss.php"); ?>
+  <?php include_once("SourcesCss.php"); ?>
   <link rel="stylesheet" href="../css/registro.css" />
   <title><?php echo $nom_completo ?></title>
 </head>

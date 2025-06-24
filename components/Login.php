@@ -51,7 +51,7 @@ foreach ($nombre_pestañas as $pestaña) {
         <button type="submit" class="btn">Acceder</button>
         <div class="container-enlaces">
           <p>¿No tienes cuenta?</p>
-          <a href="registro.php">Registrate.</a>
+          <a href="Registro.php">Registrate.</a>
           <p>¿Olvidaste tu contraseña?</p>
           <a href="#">Recuperala.</a>
         </div>
