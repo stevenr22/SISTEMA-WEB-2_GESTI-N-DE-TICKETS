@@ -11,10 +11,8 @@ foreach ($nombre_pestañas as $pestaña) {
   }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -95,15 +93,17 @@ foreach ($nombre_pestañas as $pestaña) {
           </div>
         </div>
         <!-- -------------------------------------- -->
-        <div class="container-btn">
-          <button type="submit" class="btn">Registrar</button>
-        </div>
+       
         <div class="container-check">
           <input type="checkbox" class="form-check-input" id="checkPassword"
             onchange="mostrarContraseña(['contraRegistro','contraConfirmar'])" />
           <label class="form-check-label" for="mostrarContraseña">Mostrar contraseña</label>
 
 
+        </div>
+
+         <div class="container-btn">
+          <button type="submit" class="btn">Registrar</button>
         </div>
 
         <div class="container-enlaces">
